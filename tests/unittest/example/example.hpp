@@ -14,7 +14,10 @@ class Example {
     Example()= default;
     ~Example() = default;
 
-    bool ReturnOnce();
+    bool ReturnStaticLocalVariable();
+    bool ReturnPrivateMember();
+  private:
+    bool first_ = true;
 };
 
 #endif /* EXAMPLE_HPP */

@@ -8,11 +8,19 @@
 
 #include "example.hpp"
 
-bool Example::ReturnOnce() {
+bool Example::ReturnStaticLocalVariable() {
   static bool first = true;
   if (first) {
     first = false;
     return true;
   } 
   return first;
+}
+
+bool Example::ReturnPrivateMember() {
+  if (first_) {
+    first_ = false;
+    return true;
+  } 
+  return first_;
 }
