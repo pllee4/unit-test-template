@@ -9,9 +9,22 @@
  #include "example.hpp"
  #include "gtest/gtest.h"
 
-TEST(ExampleTest, ReturnValue) {
+TEST(ReturnLocalVariableTest, HandleStaticLocalVariable) {
   Example example;
-  EXPECT_EQ(true, example.ReturnOnce());
-  EXPECT_EQ(false, example.ReturnOnce());
-  EXPECT_EQ(false, example.ReturnOnce());
+  EXPECT_TRUE(example.ReturnStaticLocalVariable());
+  EXPECT_FALSE(example.ReturnStaticLocalVariable());
+  EXPECT_FALSE(example.ReturnStaticLocalVariable());
+  Example another_example;
+  EXPECT_FALSE(another_example.ReturnStaticLocalVariable());
+  EXPECT_FALSE(example.ReturnStaticLocalVariable());
+}
+
+TEST(ReturnPrivateMemberTest, HandlePrivateMember) {
+  Example example;
+  EXPECT_TRUE(example.ReturnPrivateMember());
+  EXPECT_FALSE(example.ReturnPrivateMember());
+  EXPECT_FALSE(example.ReturnPrivateMember());
+  Example another_example;
+  EXPECT_TRUE(another_example.ReturnPrivateMember());
+  EXPECT_FALSE(example.ReturnPrivateMember());
 }
