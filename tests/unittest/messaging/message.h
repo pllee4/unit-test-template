@@ -1,13 +1,17 @@
-/* 
+/*
  * message.h
  * Created on: Jun 13, 2021 21:59
- * Description: 
- * 
+ * Description:
+ *
  * Copyright (c) 2021 Pin Loon Lee (pllee4)
- */ 
+ */
 
 #ifndef MESSAGE_H
 #define MESSAGE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct {
   char *firmware_version;
@@ -32,5 +36,9 @@ typedef struct {
     RobotState robot_state;
   } body;
 } RobotMessage;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* MESSAGE_H */
