@@ -1,2 +1,3 @@
 add_subdirectory(example)
 add_subdirectory(messaging)
+add_subdirectory(algorithm)
