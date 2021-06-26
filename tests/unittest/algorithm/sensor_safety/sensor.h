@@ -14,6 +14,7 @@ extern "C" {
 #endif
 
 #include <stdbool.h>
+#include <stdint.h>
 
 #define SENSOR_TASK_TIME 20          // ms
 #define SENSOR_STILL_ALIVE_TIME 100  // should be always updating within 100ms
@@ -21,11 +22,14 @@ extern "C" {
 
 typedef struct {
   float data[NUM_OF_SENSOR_DATA];
+  uint32_t time_stamp;
 } Sensor;
 
 bool InitSensor(Sensor *sensor);
 void SetSensorData(Sensor *sensor, float sensor_data[]);
+void SetSensorTimeStamp(Sensor *sensor, uint32_t time_stamp);
 float *GetSensorData(Sensor *sensor);
+bool CheckSensorAlive(Sensor *sensor);
 
 #ifdef __cplusplus
 }
