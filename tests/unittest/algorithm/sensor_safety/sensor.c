@@ -10,12 +10,15 @@
 
 #include <string.h>
 
-float *getSensorTestData(float mock_data[]) {
-  static float data[NUM_OF_DATA];
-  memcpy(data, mock_data, sizeof(data));
-  return data;
+bool InitSensor(Sensor *sensor) {
+  for (int i = 0; i < NUM_OF_SENSOR_DATA; i++)
+    sensor->data[i] = 0.0;
 }
 
-float *getSensorData() {
-  // should be returning data the same way as getSensorTestData
+void SetSensorData(Sensor *sensor, float sensor_data[]) {
+  memcpy(sensor->data, sensor_data, (sizeof(float) * NUM_OF_SENSOR_DATA));
+}
+
+float *GetSensorData(Sensor *sensor) {
+  return sensor->data;
 }

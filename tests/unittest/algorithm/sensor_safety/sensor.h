@@ -13,11 +13,19 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
+
 #define SENSOR_TASK_TIME 20          // ms
 #define SENSOR_STILL_ALIVE_TIME 100  // should be always updating within 100ms
-#define NUM_OF_DATA 4              // assume there are 4 data 
+#define NUM_OF_SENSOR_DATA 4         // assume there are 4 data
 
-float *getSensorTestData(float mock_data[]);
+typedef struct {
+  float data[NUM_OF_SENSOR_DATA];
+} Sensor;
+
+bool InitSensor(Sensor *sensor);
+void SetSensorData(Sensor *sensor, float sensor_data[]);
+float *GetSensorData(Sensor *sensor);
 
 #ifdef __cplusplus
 }
