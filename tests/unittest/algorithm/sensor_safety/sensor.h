@@ -19,6 +19,10 @@ extern "C" {
 #define SENSOR_TASK_TIME 20          // ms
 #define SENSOR_STILL_ALIVE_TIME 100  // should be always updating within 100ms
 #define NUM_OF_SENSOR_DATA 4         // assume there are 4 data
+#define SENSOR_VALUE_MIN 1.0
+#define SENSOR_VALUE_MAX 10.0
+#define IS_SENSOR_FAULT(value) \
+  (value<SENSOR_VALUE_MIN | value> SENSOR_VALUE_MAX)
 
 typedef struct {
   float data[NUM_OF_SENSOR_DATA];
@@ -30,6 +34,7 @@ void SetSensorData(Sensor *sensor, float sensor_data[]);
 void SetSensorTimeStamp(Sensor *sensor, uint32_t time_stamp);
 float *GetSensorData(Sensor *sensor);
 bool CheckSensorAlive(Sensor *sensor);
+bool CheckSensorRangeFault(Sensor *sensor, uint8_t fault_count);
 
 #ifdef __cplusplus
 }
