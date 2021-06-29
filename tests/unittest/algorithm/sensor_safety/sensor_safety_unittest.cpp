@@ -32,16 +32,38 @@ TEST(SensorSafety, SetSensorData) {
   }
 }
 
-TEST(SensorSafety, SensorAlive) {
+// TEST(SensorSafety, SensorAlive) {
+//   uint32_t time_count = 0;
+//   // ensure sensor alive time and update time is less than total run time
+//   EXPECT_LE(SENSOR_STILL_ALIVE_TIME + SENSOR_TASK_TIME, SENSOR_TEST_RUN_TIME);
+//   InitSensor(&test_sensor);
+//   while (time_count <= SENSOR_TEST_RUN_TIME) {
+//     time_count += SENSOR_TASK_TIME;
+//     // set sensor timestamp should be called in placed where there is sensor
+//     // data comes in in application code
+//     SetSensorTimeStamp(&test_sensor, time_count);
+//     EXPECT_TRUE(CheckSensorAlive(&test_sensor));
+//   }
+// }
+
+TEST(SensorSafety, SensorDataLost) {
   uint32_t time_count = 0;
   // ensure sensor alive time and update time is less than total run time
   EXPECT_LE(SENSOR_STILL_ALIVE_TIME + SENSOR_TASK_TIME, SENSOR_TEST_RUN_TIME);
   InitSensor(&test_sensor);
   while (time_count <= SENSOR_TEST_RUN_TIME) {
     time_count += SENSOR_TASK_TIME;
+    static uint32_t loop_count = 0;
     // set sensor timestamp should be called in placed where there is sensor
     // data comes in in application code
-    SetSensorTimeStamp(&test_sensor, time_count);
-    EXPECT_TRUE(CheckSensorAlive(&test_sensor));
+    if (loop_count < 2) {
+      SetSensorTimeStamp(&test_sensor, time_count);
+      EXPECT_TRUE(CheckSensorAlive(&test_sensor));
+    } else {
+      SetSensorTimeStamp(&test_sensor, time_count + SENSOR_STILL_ALIVE_TIME + SENSOR_TASK_TIME);
+      EXPECT_FALSE(CheckSensorAlive(&test_sensor));
+      break;
+    }
+    loop_count++;
   }
 }
