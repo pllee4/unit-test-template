@@ -31,7 +31,7 @@ bool CheckSensorAlive(Sensor *sensor) {
   static uint32_t prev_time_stamp;
   static bool first_data = true;
   if (!first_data) {
-    if (sensor->time_stamp - prev_time_stamp > SENSOR_STILL_ALIVE_TIME)
+    if (sensor->time_stamp > SENSOR_STILL_ALIVE_TIME + prev_time_stamp)
       return false;
   } else {
     if (sensor->time_stamp != 0)  // once got data
