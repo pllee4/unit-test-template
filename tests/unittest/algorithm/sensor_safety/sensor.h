@@ -16,7 +16,7 @@ extern "C" {
 #include <stdbool.h>
 #include <stdint.h>
 
-#define SENSOR_TASK_TIME 20          // ms
+#define SENSOR_UPDATE_RATE 20        // ms
 #define SENSOR_STILL_ALIVE_TIME 100  // should be always updating within 100ms
 #define NUM_OF_SENSOR_DATA 4         // assume there are 4 data
 #define SENSOR_VALUE_MIN 1.0
