@@ -28,10 +28,10 @@ void SetSensorTimeStamp(Sensor *sensor, uint32_t time_stamp) {
 float *GetSensorData(Sensor *sensor) { return sensor->data; }
 
 bool CheckSensorAlive(Sensor *sensor) {
-  static uint32_t prev_time_stamp;
+  static uint32_t current_time_stamp;
   static bool first_data = true;
   if (!first_data) {
-    if (sensor->time_stamp > SENSOR_STILL_ALIVE_TIME + prev_time_stamp)
+    if (current_time_stamp > SENSOR_STILL_ALIVE_TIME + sensor->time_stamp)
       return false;
   } else {
     if (sensor->time_stamp != 0)  // once got data
@@ -39,6 +39,6 @@ bool CheckSensorAlive(Sensor *sensor) {
     else  // sensor not yet alive
       return false;
   }
-  prev_time_stamp = sensor->time_stamp;
+  current_time_stamp += SENSOR_UPDATE_RATE;
   return true;
 }
