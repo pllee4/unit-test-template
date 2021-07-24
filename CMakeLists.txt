@@ -28,9 +28,20 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
 
 ## Project options
-option(PACKAGE_TESTS "Build the tests" ON)
+option(BUILD_TEST "Build the tests" ON)
+option(COVERAGE_CHECK "Coverage check" ON)
 
-if(PACKAGE_TESTS)
+if(COVERAGE_CHECK)
+    set(BUILD_TEST ON)
+    find_program(GCOV gcov)
+    if(GCOV)
+        message(STATUS "Found gcov")
+        set(CMAKE_BUILD_TYPE Debug)
+        set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
+    endif()
+endif()
+
+if(BUILD_TEST)
     enable_testing()
     include(GoogleTest)
     add_subdirectory(tests)
