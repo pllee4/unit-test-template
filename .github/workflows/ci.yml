@@ -30,8 +30,15 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install lcov
+        run: sudo apt-get update && sudo apt-get install -y lcov
       - name: Build
         run: mkdir build && cd build && cmake .. && cmake --build .
       - name: Test
         run: cd ./build && make test
-
+      - name: Check code coverage
+        run: /usr/bin/lcov --directory ./build --capture --output-file ./build/coverage.info && /usr/bin/lcov --remove ./build/coverage.info "/usr/*" "*/googletest/googletest/*" --output-file ./build/coverage.info
+      - name: List coverage summary
+        run: /usr/bin/lcov --list ./build/coverage.info
+      - name: Upload report to codecov
+        run: bash <(curl -s https://codecov.io/bash) -f ./build/coverage.info
