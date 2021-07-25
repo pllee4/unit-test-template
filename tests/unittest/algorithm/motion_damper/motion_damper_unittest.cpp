@@ -19,9 +19,9 @@ TEST(MotionDamper, Decelerate) {
   for (int i = 0; i < 4; ++i) {
     motion_command_msg.linear.x = input[i];
     MotionDamper(&motion_command_msg);
-    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i])
-        << "Test failed: expected " << output[i] << " but got "
-        << motion_command_msg.linear.x;
+    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i]);
+        // << "Test failed: expected " << output[i] << " but got "
+        // << motion_command_msg.linear.x;
   }
 }
 
@@ -34,9 +34,9 @@ TEST(MotionDamper, AccelerateThenStop) {
   for (int i = 0; i < 4; ++i) {
     motion_command_msg.linear.x = input[i];
     MotionDamper(&motion_command_msg);
-    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i])
-        << "Test failed: expected " << output[i] << " but got "
-        << motion_command_msg.linear.x;
+    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i]);
+        // << "Test failed: expected " << output[i] << " but got "
+        // << motion_command_msg.linear.x;
   }
 }
 
@@ -49,8 +49,8 @@ TEST(MotionDamper, AccelerateInverse) {
   for (int i = 0; i < 4; ++i) {
     motion_command_msg.linear.x = input[i];
     MotionDamper(&motion_command_msg);
-    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i])
-        << "Test failed: expected " << output[i] << " but got "
-        << motion_command_msg.linear.x;
+    EXPECT_FLOAT_EQ(motion_command_msg.linear.x, output[i]);
+        // << "Test failed: expected " << output[i] << " but got "
+        // << motion_command_msg.linear.x;
   }
 }
