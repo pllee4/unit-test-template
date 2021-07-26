@@ -27,6 +27,8 @@ extern "C" {
 typedef struct {
   float data[NUM_OF_SENSOR_DATA];
   uint32_t time_stamp;
+  uint32_t current_time_stamp;
+  bool first_data;
 } Sensor;
 
 bool InitSensor(Sensor *sensor);
