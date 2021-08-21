@@ -1,3 +1,4 @@
+add_subdirectory(algorithm)
+add_subdirectory(data_structure)
 add_subdirectory(example)
 add_subdirectory(messaging)
-add_subdirectory(algorithm)
