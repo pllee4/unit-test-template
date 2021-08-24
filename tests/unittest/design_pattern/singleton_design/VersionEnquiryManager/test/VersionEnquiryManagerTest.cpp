@@ -33,6 +33,8 @@ class VersionEnquiryManagerTest : public ::testing::Test {
 TEST(VersionEnquiryManager, SingletonInitialization) {
   VersionInfo version_info;
   EXPECT_FALSE(SetVersionInfo(BOARD_TYPE, version_info));
+  AskReplyFromVersionEnquiryManager(BOARD_TYPE);
+  EXPECT_FALSE(enter_version_reply_func);
   EXPECT_TRUE(InitVersionEnquiryManager(TestVersionReplyFunc));
   EXPECT_FALSE(InitVersionEnquiryManager(TestVersionReplyFunc));
 }
