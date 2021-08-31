@@ -6,5 +6,5 @@ mark_as_advanced(
 
 add_executable(motion_damper_test motion_damper.c motion_damper_unittest.cpp)
 target_link_libraries(motion_damper_test PRIVATE gtest gmock gtest_main)
-gtest_discover_tests(motion_damper_test)
+gtest_discover_tests(motion_damper_test XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 add_test(NAME gtest_all COMMAND motion_damper_test)

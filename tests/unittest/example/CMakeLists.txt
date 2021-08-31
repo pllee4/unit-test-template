@@ -6,5 +6,5 @@ mark_as_advanced(
 
 add_executable(example_test example.cpp example_unittest.cpp)
 target_link_libraries(example_test PRIVATE gtest gmock gtest_main)
-gtest_discover_tests(example_test)
+gtest_discover_tests(example_test XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 add_test(NAME gtest_all COMMAND example_test)

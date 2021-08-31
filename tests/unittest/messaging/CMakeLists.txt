@@ -6,5 +6,5 @@ mark_as_advanced(
 
 add_executable(messaging_test messaging.c messaging_unittest.cpp)
 target_link_libraries(messaging_test PRIVATE gtest gmock gtest_main)
-gtest_discover_tests(messaging_test)
+gtest_discover_tests(messaging_test XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 add_test(NAME gtest_all COMMAND messaging_test)

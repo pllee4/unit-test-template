@@ -6,5 +6,5 @@ mark_as_advanced(
 
 add_executable(sensor_safety_test sensor.c sensor_safety_unittest.cpp)
 target_link_libraries(sensor_safety_test PRIVATE gtest gmock gtest_main)
-gtest_discover_tests(sensor_safety_test)
+gtest_discover_tests(sensor_safety_test XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 add_test(NAME gtest_all COMMAND sensor_safety_test)

@@ -11,5 +11,5 @@ $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 
 target_link_libraries(VersionEnquiryManagerTest PRIVATE gtest gmock gtest_main)
 
-gtest_discover_tests(VersionEnquiryManagerTest)
+gtest_discover_tests(VersionEnquiryManagerTest XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 add_test(NAME gtest_all COMMAND VersionEnquiryManagerTest)
