@@ -42,3 +42,10 @@ jobs:
         run: /usr/bin/lcov --list ./build/coverage.info
       - name: Upload report to codecov
         run: bash <(curl -s https://codecov.io/bash) -f ./build/coverage.info
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with: 
+          name: package
+          path: build/
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
