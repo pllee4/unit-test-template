@@ -1,1 +1,2 @@
 add_subdirectory(creational_pattern)
+add_subdirectory(structural_pattern)
