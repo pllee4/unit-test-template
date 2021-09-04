@@ -1,1 +1,1 @@
-add_subdirectory(singleton_design)
+add_subdirectory(creational_pattern)
