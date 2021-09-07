@@ -13,7 +13,7 @@
 #include "robot/details/robot1_spec.h"
 
 int16_t ConvertWheelAngularVelocityToRPM(const float vel) {
-  return (int16_t)(vel * 60 / (2 * 3.14)) * ROBOT1_TRANSMISSION_RATE;
+  return (int16_t)(vel * 60 * ROBOT1_TRANSMISSION_RATE / (2 * 3.14));
 }
 
 float ConvertRPMToWheelAngularVelocity(const int16_t rpm) {
