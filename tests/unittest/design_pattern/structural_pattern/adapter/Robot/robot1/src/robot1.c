@@ -51,6 +51,10 @@ CommonActuatorCommand GetCommonActuatorCommand(
   actuator_command.rotational_motor[2] = -vel_left_cmd;
   actuator_command.rotational_motor[3] = vel_right_cmd;
 
+  actuator_command.servo_motor[0] = 0;
+  actuator_command.servo_motor[1] = 0;
+  actuator_command.servo_motor[2] = 0;
+  actuator_command.servo_motor[3] = 0;
   return actuator_command;
 }
 
