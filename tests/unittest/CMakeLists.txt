@@ -1,5 +1,0 @@
-add_subdirectory(algorithm)
-add_subdirectory(data_structure)
-add_subdirectory(design_pattern)
-add_subdirectory(example)
-add_subdirectory(messaging)
