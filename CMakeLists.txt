@@ -18,7 +18,7 @@ if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
     endif()
 endif()
 
-if(NOT EXISTS "${PROJECT_SOURCE_DIR}/tests/googletest/CMakeLists.txt")
+if(NOT EXISTS "${PROJECT_SOURCE_DIR}/third_party/googletest/CMakeLists.txt")
     message(FATAL_ERROR "The submodules were not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
@@ -44,7 +44,7 @@ endif()
 if(BUILD_TEST)
     enable_testing()
     include(GoogleTest)
-    add_subdirectory(tests)
+    add_subdirectory(third_party)
 endif()
 
 add_subdirectory(algorithm)
