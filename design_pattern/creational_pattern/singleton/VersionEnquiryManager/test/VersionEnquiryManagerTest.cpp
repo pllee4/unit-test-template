@@ -58,6 +58,25 @@ TEST_F(VersionEnquiryManagerTest, SetVersionInfo) {
   EXPECT_TRUE(SetVersionInfo(test_version_type, test_version_info));
 }
 
+TEST_F(VersionEnquiryManagerTest, SetCMakeProjectVersionInfo) {
+  test_version_type = FIRMWARE_TYPE;
+  test_version_info.valueof.major = PROJECT_VERSION_MAJOR;
+  test_version_info.valueof.minor = PROJECT_VERSION_MINOR;
+  test_version_info.valueof.patch = PROJECT_VERSION_PATCH;
+
+  EXPECT_EQ(PROJECT_VERSION_MAJOR, 1);
+  EXPECT_EQ(PROJECT_VERSION_MINOR, 0);
+  EXPECT_EQ(PROJECT_VERSION_PATCH, 0);
+
+  EXPECT_TRUE(SetVersionInfo(test_version_type, test_version_info));
+
+  test_version_type = BOARD_TYPE;
+  EXPECT_TRUE(SetVersionInfo(test_version_type, test_version_info));
+
+  test_version_type = ROBOT_TYPE;
+  EXPECT_TRUE(SetVersionInfo(test_version_type, test_version_info));
+}
+
 TEST_F(VersionEnquiryManagerTest, AskReplyFromVersionEnquiryManager) {
   test_version_type = FIRMWARE_TYPE;
   test_version_info.valueof.major = 1;
