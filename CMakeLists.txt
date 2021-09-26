@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.10.2)
 
-project(unittest)
+project(unittest VERSION 1.0.0)
+
+add_definitions( -DPROJECT_VERSION_MAJOR=${PROJECT_VERSION_MAJOR})
+add_definitions( -DPROJECT_VERSION_MINOR=${PROJECT_VERSION_MINOR})
+add_definitions( -DPROJECT_VERSION_PATCH=${PROJECT_VERSION_PATCH})
 
 ## Submodules
 find_package(Git QUIET)
