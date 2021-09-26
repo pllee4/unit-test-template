@@ -52,6 +52,7 @@ if(BUILD_TEST)
 endif()
 
 add_subdirectory(algorithm)
+add_subdirectory(calculation)
 add_subdirectory(data_structure)
 add_subdirectory(design_pattern)
 add_subdirectory(example)
