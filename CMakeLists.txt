@@ -6,6 +6,8 @@ add_definitions( -DPROJECT_VERSION_MAJOR=${PROJECT_VERSION_MAJOR})
 add_definitions( -DPROJECT_VERSION_MINOR=${PROJECT_VERSION_MINOR})
 add_definitions( -DPROJECT_VERSION_PATCH=${PROJECT_VERSION_PATCH})
 
+set(CMAKE_CXX_STANDARD 17)
+
 ## Submodules
 find_package(Git QUIET)
 if(GIT_FOUND AND EXISTS "${PROJECT_SOURCE_DIR}/.git")
@@ -58,3 +60,4 @@ add_subdirectory(design_pattern)
 add_subdirectory(example)
 add_subdirectory(messaging)
 add_subdirectory(technique)
+add_subdirectory(template)
