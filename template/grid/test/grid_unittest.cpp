@@ -33,3 +33,25 @@ TEST(Grid, Exception) {
     EXPECT_EQ(err.what(), std::string("y exceeded height!"));
   }
 }
+
+TEST(Grid, PointerTypes) {
+  Grid<const char*> myStringGrid;
+  myStringGrid.at(5, 5) = "hello";
+  const char* string{myStringGrid.at(5, 5).value_or(" ")};
+  EXPECT_EQ(string, "hello");
+}
+
+TEST(Grid, TemplateTypes) {
+  Grid<std::vector<int>> gridOfVectors;
+  std::vector<int> myVector{1, 2, 3, 4};
+  gridOfVectors.at(5, 5) = myVector;
+  std::vector<int> testVector{gridOfVectors.at(5, 5).value()};
+  EXPECT_EQ(testVector, myVector);
+}
+
+TEST(Grid, FreeStore) {
+  auto myGridOnFreeStore{std::make_unique<Grid<int>>(2, 2)};
+  myGridOnFreeStore->at(0, 0) = 10;
+  int y{myGridOnFreeStore->at(0, 0).value_or(0)};
+  EXPECT_EQ(y, 10);
+}
