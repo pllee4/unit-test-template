@@ -34,3 +34,17 @@ TEST(DefaultValueTemplate, DoubleParameters) {
   int y{anotherIntGrid.at(5, 5).value_or(0)};
   EXPECT_EQ(y, 10);
 }
+
+TEST(DefaultValueTemplate, Exception) {
+  Grid<int> myIntGrid;
+  try {
+    myIntGrid.at(100, 0) = 10;
+  } catch (std::out_of_range const& err) {
+    EXPECT_EQ(err.what(), std::string("x exceeded width!"));
+  }
+  try {
+    myIntGrid.at(0, 100) = 10.0;
+  } catch (std::out_of_range const& err) {
+    EXPECT_EQ(err.what(), std::string("y exceeded height!"));
+  }
+}
