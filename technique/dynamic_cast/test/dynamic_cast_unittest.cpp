@@ -13,7 +13,7 @@
 
 using namespace pllee4;
 
-std::string GetAnimalInfo(Animal *animal) {
+std::string GetAnimalInfo1(Animal *animal) {
   std::string info;
   auto pet = dynamic_cast<Pet *>(animal);
   if (pet) info += "name: " + pet->GetName() + " ";
@@ -21,10 +21,30 @@ std::string GetAnimalInfo(Animal *animal) {
   return info;
 }
 
-TEST(DynamicCast, DownCast) {
+std::string GetAnimalInfo2(Animal *animal) {
+  std::string info;
+  try {
+    Pet &pet = dynamic_cast<Pet &>(*animal);
+    info += "name: " + pet.GetName() + " ";
+  } catch (std::exception &e) {
+    std::cout << e.what() << std::endl;
+  }
+  info += "age: " + std::to_string(animal->GetAge());
+  return info;
+}
+
+TEST(DynamicCast, DownCastUsingPointer) {
   Animal *animal = new Lion(2);
-  EXPECT_TRUE(GetAnimalInfo(animal) == "age: 2");
+  EXPECT_TRUE(GetAnimalInfo1(animal) == "age: 2");
   animal = new Dog("Lucky", 5);
-  EXPECT_TRUE(GetAnimalInfo(animal) == "name: Lucky age: 5");
+  EXPECT_TRUE(GetAnimalInfo1(animal) == "name: Lucky age: 5");
+  delete animal;
+}
+
+TEST(DynamicCast, DownCastUsingReference) {
+  Animal *animal = new Lion(2);
+  EXPECT_TRUE(GetAnimalInfo2(animal) == "age: 2");
+  animal = new Dog("Lucky", 5);
+  EXPECT_TRUE(GetAnimalInfo2(animal) == "name: Lucky age: 5");
   delete animal;
 }
