@@ -8,13 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Run compliance checks on patch series (PR)
     steps:
-    - name: Run Compliance Tests
-      continue-on-error: true
-      id: compliance
-      env:
-        BASE_REF: ${{ github.base_ref }}
-      run: |
-        pip3 install setuptools gitlint
-        gitlint --commits 2b95b9b46b78299ee0e2c38f57499aef02b65d13
+      - uses: actions/checkout@v2
+      - name: Run Compliance Tests
+        continue-on-error: true
+        id: compliance
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          pip3 install setuptools gitlint
+          gitlint --commits 2b95b9b46b78299ee0e2c38f57499aef02b65d13
 #        gitlint --commits origin/master..
 
