@@ -14,5 +14,5 @@ jobs:
       env:
         BASE_REF: ${{ github.base_ref }}
       run: |
-        echo ${BASE_REF}
+        gitlint --commits origin/master..
 
