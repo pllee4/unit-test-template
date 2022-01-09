@@ -14,5 +14,6 @@ jobs:
       env:
         BASE_REF: ${{ github.base_ref }}
       run: |
+        pip3 install setuptools gitlint
         gitlint --commits origin/master..
 
