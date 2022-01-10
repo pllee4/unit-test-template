@@ -16,6 +16,7 @@ jobs:
           BASE_REF: ${{ github.base_ref }}
         run: |
           pip3 install setuptools gitlint
+          git branch -a
           gitlint --commits origin/master..
 #          gitlint --commits 2b95b9b46b78299ee0e2c38f57499aef02b65d13
 
