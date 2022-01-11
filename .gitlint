@@ -4,5 +4,9 @@ line-length=72
 [body-max-line-length]
 line-length=72
 
+[ignore-by-title]
+regex=^Merge(.*)into(.*)
+
 [general]
-ignore=B6:body-is-missing
+ignore=body-is-missing,B6
+ignore-merge-commits=true
