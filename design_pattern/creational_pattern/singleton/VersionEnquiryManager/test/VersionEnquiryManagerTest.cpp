@@ -7,12 +7,25 @@
  */
 
 #include "VersionEnquiryManager/VersionEnquiryManager.h"
-
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 static VersionType test_version_type;
 static VersionInfo test_version_info;
 static bool enter_version_reply_func = false;
+
+using ::testing::NiceMock;
+
+template<class T>
+constexpr bool operator==(T&&, T&&) noexcept
+{
+    return true;
+}
+
+namespace testing {
+namespace internal {
+    using ::operator==;
+} }
 
 void TestVersionReplyFunc(const VersionType version_type,
                           const VersionInfo version_info) {
@@ -28,6 +41,12 @@ class VersionEnquiryManagerTest : public ::testing::Test {
   VersionEnquiryManagerTest() {}
 
   void SetUp() override { InitVersionEnquiryManager(TestVersionReplyFunc); }
+};
+
+class MockVersionReplyFunc {
+ public:
+  MOCK_METHOD(void, TestVersionReplyFunc,
+              (const VersionType version_type, const VersionInfo version_info));
 };
 
 TEST(VersionEnquiryManager, SingletonInitialization) {
@@ -84,6 +103,9 @@ TEST_F(VersionEnquiryManagerTest, AskReplyFromVersionEnquiryManager) {
   test_version_info.valueof.patch = 3;
   EXPECT_TRUE(SetVersionInfo(test_version_type, test_version_info));
   AskReplyFromVersionEnquiryManager(test_version_type);
+  NiceMock<MockVersionReplyFunc> mock;
+  EXPECT_CALL(mock, TestVersionReplyFunc(std::as_const(test_version_type),
+                                         std::as_const(test_version_info)));
   EXPECT_TRUE(enter_version_reply_func);
   enter_version_reply_func = false;
 
