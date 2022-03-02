@@ -20,7 +20,7 @@ TEST(NonTypeTemplate, CopyConstructor) {
 }
 
 TEST(NonTypeTemplate, Exception) {
-  Grid<int, 10, 10> myDoubleGrid;
+  Grid<double, 10, 10> myDoubleGrid;
   try {
     myDoubleGrid.at(100, 0) = 10.0;
   } catch (std::out_of_range const& err) {

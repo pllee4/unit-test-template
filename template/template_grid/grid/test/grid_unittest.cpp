@@ -21,7 +21,7 @@ TEST(Grid, CopyConstructor) {
 }
 
 TEST(Grid, Exception) {
-  Grid<int> myDoubleGrid{10, 10};
+  Grid<double> myDoubleGrid{10, 10};
   try {
     myDoubleGrid.at(100, 0) = 10.0;
   } catch (std::out_of_range const& err) {
