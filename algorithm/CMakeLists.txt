@@ -1,2 +1,3 @@
 add_subdirectory(motion_damper)
 add_subdirectory(sensor_safety)
+add_subdirectory(sort)
