@@ -1,0 +1,9 @@
+[title-max-length]
+line-length=72
+
+[body-max-line-length]
+line-length=72
+
+[general]
+ignore=body-is-missing,B6
+ignore-merge-commits=true

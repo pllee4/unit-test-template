@@ -1,0 +1,23 @@
+name: Git Lint
+
+on: 
+  [pull_request]
+
+jobs: 
+  compliance_job:
+    runs-on: ubuntu-latest
+    name: Run compliance checks on patch series (PR)
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Compliance Tests
+        continue-on-error: true
+        id: compliance
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          pip3 install setuptools gitlint pyflakes diff-cover
+          git fetch origin master:refs/remotes/origin/master
+          gitlint --commits origin/master..
+#          gitlint --commits "origin/${BASE_REF}.."
+#          gitlint --commits 2b95b9b46b78299ee0e2c38f57499aef02b65d13
+
