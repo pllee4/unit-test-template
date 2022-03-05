@@ -1,2 +1,3 @@
+add_subdirectory(method_templates)
 add_subdirectory(template_grid)
 add_subdirectory(template_parameters)
