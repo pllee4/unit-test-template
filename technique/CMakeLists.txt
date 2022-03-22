@@ -1,2 +1,3 @@
 add_subdirectory(dynamic_cast)
 add_subdirectory(pimpl)
+add_subdirectory(type_erasure)
