@@ -20,13 +20,13 @@ auto GetArity(T t) {
 
 template <typename T>
 bool SameReturnType(T t, const std::type_info& type) {
-  typedef typename function_traits<T>::result_type return_type;
+  using return_type = typename function_traits<T>::result_type;
   return (typeid(return_type) == type);
 }
 
-template <typename T>
-bool SameTypeArity0(T t, const std::type_info& type) {
-  typedef typename function_traits<T>::template arg<0> arg_type;
+template <std::size_t Index, typename T>
+bool SameTypeArity(T t, const std::type_info& type) {
+  using arg_type = typename function_traits<T>::template arg<Index>;
   return (typeid(arg_type) == type);
 }
 
@@ -38,6 +38,11 @@ TEST(FunctionTraits, ReturnType) {
 }
 
 TEST(FunctionTraits, Type) {
-  EXPECT_FALSE(SameTypeArity0(FunctionWithThreeArity, typeid(double)));
-  EXPECT_TRUE(SameTypeArity0(FunctionWithThreeArity, typeid(int)));
+  EXPECT_TRUE(SameTypeArity<0>(FunctionWithThreeArity, typeid(int)));
+  EXPECT_TRUE(SameTypeArity<1>(FunctionWithThreeArity, typeid(float)));
+  EXPECT_TRUE(SameTypeArity<2>(FunctionWithThreeArity, typeid(bool)));
+}
+
+TEST(FunctionTraits, ValidCallable) {
+  EXPECT_TRUE(FunctionWithThreeArity(1, 1.0, true));
 }
