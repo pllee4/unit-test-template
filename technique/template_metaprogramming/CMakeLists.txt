@@ -13,6 +13,15 @@ $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
 target_link_libraries(function_traits PRIVATE gtest gmock gtest_main)
 gtest_discover_tests(function_traits XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
 
+## mixins
+add_executable(mixins 
+    test/mixins_unittest.cpp)
+
+target_include_directories(mixins PUBLIC
+$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+target_link_libraries(mixins PRIVATE gtest gmock gtest_main)
+gtest_discover_tests(mixins XML_OUTPUT_DIR ${PROJECT_BINARY_DIR}/test-reports)
+
 ## variadic_overloading
 add_executable(variadic_overloading 
     test/variadic_overloading_unittest.cpp)
