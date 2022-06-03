@@ -12,6 +12,7 @@
 
 #include <algorithm>
 #include <iterator>
+#include <vector>
 
 namespace pllee4 {
 namespace merge_sort {
