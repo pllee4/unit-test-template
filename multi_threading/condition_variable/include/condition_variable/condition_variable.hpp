@@ -31,8 +31,10 @@ class Messaging {
   T GetValue() const { return value_; }
 
   void PutMessage(const T &value) {
-    std::lock_guard<std::mutex> lock(mutex_);
-    msg_queue_.push(value);
+    {
+      std::lock_guard<std::mutex> lock(mutex_);
+      msg_queue_.push(value);
+    }
     cv_.notify_one();
   }
 
@@ -49,6 +51,7 @@ class Messaging {
     cv_.wait(lock, [&]() { return not msg_queue_.empty(); });
     value_ = msg_queue_.front();
     msg_queue_.pop();
+    lock.unlock();
   }
 };
 }  // namespace pllee4
