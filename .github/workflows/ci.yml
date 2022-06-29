@@ -18,6 +18,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Install dependencies
+        run: sudo apt-get install libboost-all-dev -y
       # Runs a single command using the runners shell
       - name: Build
         run: mkdir build && cd build && cmake .. && cmake --build .  
