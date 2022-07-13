@@ -1,5 +1,6 @@
 add_subdirectory(callback_wrapper)
 add_subdirectory(constexpr_for)
+add_subdirectory(crtp)
 add_subdirectory(dynamic_cast)
 add_subdirectory(pimpl)
 add_subdirectory(template_metaprogramming)
