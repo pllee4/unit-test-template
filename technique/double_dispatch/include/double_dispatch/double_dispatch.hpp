@@ -19,39 +19,39 @@ class Employee {
  public:
   virtual bool ReportsTo(const Employee& employee) const = 0;
 
-  virtual bool IsUnder(const Engineer&) const = 0;
-  virtual bool IsUnder(const SeniorEngineer&) const = 0;
-  virtual bool IsUnder(const PrincipalEngineer&) const = 0;
+  virtual bool ReportedBy(const Engineer&) const = 0;
+  virtual bool ReportedBy(const SeniorEngineer&) const = 0;
+  virtual bool ReportedBy(const PrincipalEngineer&) const = 0;
 };
 
-class Engineer : Employee {
+class Engineer : public Employee {
  public:
   bool ReportsTo(const Employee& employee) const override {
-    return employee.IsUnder(*this);
+    return employee.ReportedBy(*this);
   }
-  bool IsUnder(const Engineer&) const override { return false; }
-  bool IsUnder(const SeniorEngineer&) const override { return true; }
-  bool IsUnder(const PrincipalEngineer&) const override { return true; }
+  bool ReportedBy(const Engineer&) const override { return false; }
+  bool ReportedBy(const SeniorEngineer&) const override { return false; }
+  bool ReportedBy(const PrincipalEngineer&) const override { return false; }
 };
 
-class SeniorEngineer : Employee {
+class SeniorEngineer : public Employee {
  public:
   bool ReportsTo(const Employee& employee) const override {
-    return employee.IsUnder(*this);
+    return employee.ReportedBy(*this);
   }
-  bool IsUnder(const Engineer&) const override { return false; }
-  bool IsUnder(const SeniorEngineer&) const override { return false; }
-  bool IsUnder(const PrincipalEngineer&) const override { return true; }
+  bool ReportedBy(const Engineer&) const override { return true; }
+  bool ReportedBy(const SeniorEngineer&) const override { return false; }
+  bool ReportedBy(const PrincipalEngineer&) const override { return false; }
 };
 
-class PrincipalEngineer : Employee {
+class PrincipalEngineer : public Employee {
  public:
   bool ReportsTo(const Employee& employee) const override {
-    return employee.IsUnder(*this);
+    return employee.ReportedBy(*this);
   }
-  bool IsUnder(const Engineer&) const override { return false; }
-  bool IsUnder(const SeniorEngineer&) const override { return false; }
-  bool IsUnder(const PrincipalEngineer&) const override { return false; }
+  bool ReportedBy(const Engineer&) const override { return true; }
+  bool ReportedBy(const SeniorEngineer&) const override { return true; }
+  bool ReportedBy(const PrincipalEngineer&) const override { return false; }
 };
 }  // namespace pllee4
 
