@@ -1,1 +1,2 @@
+add_subdirectory(mediator)
 add_subdirectory(observer)
