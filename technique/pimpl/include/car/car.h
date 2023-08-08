@@ -10,6 +10,7 @@
 #define CAR_H
 
 #include <memory>
+#include <string>
 
 namespace pllee4 {
 class Car {
