@@ -6,6 +6,8 @@
  * Copyright (c) 2021 Pin Loon Lee (pllee4)
  */
 
+#include <string>
+
 namespace pllee4 {
 struct Engine {
   static std::string GetEngineName() { return "Volvo"; }

@@ -12,6 +12,7 @@
 
 #include <cstddef>
 #include <optional>
+#include <stdexcept>
 #include <vector>
 
 namespace pllee4 {
